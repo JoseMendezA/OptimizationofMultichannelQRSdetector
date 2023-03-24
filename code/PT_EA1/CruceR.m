@@ -40,10 +40,6 @@ R1 = rand() % Cross-over operator it depends on the random choice of real number
                     Offspring(idx+1,i1) = aux2; % Generate λ new individuals using variation operators
                     idx = idx+2;
                     end
-           end
-%     else
-%         [Row_muta,~] = size(mating_pool); 
-%         RRR = ceil(Row_muta*0.4); % RRR highest individuals for mutation operator in case the recombination operator is not used 
-%         Offspring = mating_pool(1:RRR,:); % individuals for mutation operator if R1 > factor_prob_cross
-   end    
+            end        
+    end    
 end

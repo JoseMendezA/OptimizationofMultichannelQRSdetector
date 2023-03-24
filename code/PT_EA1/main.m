@@ -7,29 +7,17 @@
 % This script allows to obtain the best QRS complex detection performances
 % first_performance_singlechannel;
 
-%%%%%% parameters of the Evolutionary algorithm %%%%%%
+%%  Evolutionary algorithm [EA]
 tic
+%% Hyperparameter configuration
  tamano_poblacion = 18; % Population size
  L = 27; % Chromosome length
+ V = 27; %V: Number of independent variables in an optimized task.
+	 % In this case study, each chromosome is represented for 27 variable using 1 gene (real number representation)
  
-%V: Number of independent variables in an optimized task. 
-%The total number of genes in an individual is equal to the number of
-%variables in an optimized task.
- V = 27; % In this case study, each chromosome is represented for 25 variable using 1 gene (real number representation)
- 
- % Cross-over operator it depends on the random choice of real number R1=rand(k) from the range [0,1);
- % if generation <= 0.8*max_generation then PC = 0.3 
- % else PC = 0.7.
-  
- % Mutation operator: Self-adaptive mutation from Gaussian distribution
- % PM = The mutation probability, pm , is adapted during the learning phase
-  
- % beta: Threshol vector to find the optimal beta within a search space: beta = -1.5:0.01:1;
+ I_beta  = [-1.5 3]; 	  % Threshol vector to find the optimal beta within a search space;
  I_alpha = [0 3.5];       % Scaled in the search range (view previous line comment).
- I_beta  = [-1.5 3];
- 
- %The fitness improvement remains under a threshold value for a given 
- %period of time (i.e., for a number of generations or fitness evaluations).
+
  mejorRMSE = 1000; %The best RMSE value: 19.9883 for DPD = 0.00141
                    %Represents the best detection performance using the
                    %proposed multi-channel detector for PT
@@ -38,7 +26,7 @@ tic
  iter = 0;
  parar = false;
  r = 0;
- max_iter = 15; % Fix Time by Maximun number of generations
+ max_iter = 20; % Fix Time by Maximun number of generations
  
  x1 = zeros(1,L-1); % Optimal data coefficients
  
@@ -52,9 +40,8 @@ addpath(pwd);
   [funcion_objetivo] = funcionObjetivo (poblacion, tamano_poblacion);
   funcion_objetivo = funcion_objetivo.PT; % converting from struct to double
 
-% Cycle that will run until one of the two conditions is met:
-% Condition 1: That the value of quality are reached at EA in a single run.
-% Condition 2: That XX evaluations are reached
+% Cycle that will run until condition is met:
+% Condition 1: That max_iter evaluations are reached
   
  while parar == false
       
@@ -106,7 +93,7 @@ addpath(pwd);
        poblacion(end,end) = beta_optimal;
        RMSE_opt = mejorRMSE;
        [best,~] = size(poblacion); % Final position in the population
-
+-
     end %endif
 
    

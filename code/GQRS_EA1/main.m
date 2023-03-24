@@ -15,7 +15,7 @@ tic
 %V: Number of independent variables in an optimized task. 
 %The total number of genes in an individual is equal to the number of
 %variables in an optimized task.
- V = 27; % In this case study, each chromosome is represented for 25 variable using 1 gene (real number representation)
+ V = 27; % In this case study, each chromosome is represented for 27 variable using 1 gene (real number representation)
  
  % Cross-over operator it depends on the random choice of real number R1=rand(k) from the range [0,1);
  % if generation <= 0.8*max_generation then PC = 0.3 
