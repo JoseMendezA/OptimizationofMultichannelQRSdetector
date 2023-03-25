@@ -42,40 +42,36 @@ addpath(pwd);
 
 % Cycle that will run until condition is met:
 % Condition 1: That max_iter evaluations are reached
-  
+
+%%Iterative process  
  while parar == false
       
      disp(['Iteration number = ' num2str(iter) ',Evaluating Evolutionary Algorithm, Optimal RMSE  = ' num2str(mejorRMSE) ', Remaining ' num2str(max_iter-iter) ' iterations']);
     
-     % Generate the mating pool using selection process
-     
-      %The roulette wheel algorithm μ: parents into a mating pool λ: number of
-      %select members from the set of μ Given the cumulative probability  
+      %% Generate the mating pool using selection process: Parent selection Mechanism (The roulette wheel algorithm)      
       disp('Artificial Selection: The roulette wheel algorithm μ');
       [mating_pool,objective_function_pool] = selectionWheel (funcion_objetivo, tamano_poblacion, poblacion);
       
-      %Generate λ new individuals using variation operators
+      %%Generate λ new individuals using variation operators
       
       %Crossover operator (Real-Valued)
       disp('Cross-over Operator: "Simple Arithmetic Cross-over"');
       [Offspring, R1, factor_prob_cross] = CruceR(mating_pool,V,max_iter,iter);
       
       %Mutation operator
-      %One argument operator, and are executed on the population of genes
-      %with probability PM € [0;1].
       disp('Mutation Operator: Uncorrelated Mutation with one Step Size');
       [Offspring,Rmut,Pm] = Mutacion( Offspring,iter,max_iter,I_alpha,I_beta);
       
-           
-      if (R1<factor_prob_cross || Rmut<Pm) %Evaluate individuals for the next generation
+      %%Evaluate and SELECT individuals for next generation.
+
+      if (R1<factor_prob_cross || Rmut<Pm)
       
       % Survivor Selection
-      % SELECT individuals for the next generation.
       [poblacion, funcion_objetivo] = Survivor_selection(mating_pool, Offspring, objective_function_pool, tamano_poblacion);
       
       end
       
-      %Proceso para seleccionar mejor RMSE
+      %Selection of the best individual 
       disp('Selection RMSE_opt and index');
       [RMSE_opt, best] = min(funcion_objetivo); %struct2array
       [~, worst] = max(funcion_objetivo);
@@ -88,23 +84,16 @@ addpath(pwd);
        
     elseif mejorRMSE ~= RMSE_opt
         
-         % Elitism (Replace Worst)
+       % Elitism (Replace Worst)
        poblacion(end,1:L-1) = x1;
        poblacion(end,end) = beta_optimal;
        RMSE_opt = mejorRMSE;
        [best,~] = size(poblacion); % Final position in the population
 -
-    end %endif
+    end
 
    
-    %Stop condition number 1
-    if RMSE_opt < 1   % Fix Quality
-      
-        parar = true;
-      
-    end %endif
-    
-    %Stop condition number 2
+    %Stop condition 
     if iter == max_iter
       parar = true;
     end %endif
