@@ -18,8 +18,7 @@ tic
  I_beta  = [-1.5 3]; 	  % Threshol vector to find the optimal beta within a search space;
  I_alpha = [0 3.5];       % Scaled in the search range (view previous line comment).
 
- mejorRMSE = 1000; %The best RMSE value: 19.9883 for DPD = 0.00141
-                   %Represents the best detection performance using the
+ mejorRMSE = 1000; %Represents the best detection performance using the
                    %proposed multi-channel detector for PT
       
 % Parameters of Terminate conditions of the algorithm 
@@ -92,7 +91,6 @@ addpath(pwd);
 -
     end
 
-   
     %Stop condition 
     if iter == max_iter
       parar = true;
@@ -100,22 +98,23 @@ addpath(pwd);
     
     iter=iter+1;
 
-    % Varying parameter: Parameter control - Representation: Reinitialise 
-    % population with new coding is hamming distance between the best and 
-    % worst strings of the current population is not greater than 1.
+    %%Diversity control
     HD = pdist([poblacion(best,:); poblacion(worst,:)],'hamming') % Hamming distance
     if HD < 1 && iter < floor(0.7*max_iter) % Depth in finding final iterations to increase exploitation
        %Reinitialise population arrangement with new coding 
        [poblacion, funcion_objetivo] = poblacion_restarts(poblacion,best,RMSE_opt);
     end
     
+    %Updating fitness function values
     RMSE_opt_Temp(iter) = mejorRMSE;                %Best f(x) — Best fitness function value
     Worst_score(iter) = max(funcion_objetivo);      %Worst f(x) — Best fitness function value; struct2array
     Mean_fitnnes(iter) = mean(funcion_objetivo);    %Mean f(x) — Mean fitness function value; struct2array
     average_distance(iter) = mean(pdist(poblacion));%Average distance between individuals
 
- end %end while
- 
+ end
+
+%%Display of results
+
  disp('The best RMSE value is')
  mejorRMSE % Edit 
  
@@ -128,7 +127,7 @@ addpath(pwd);
  % Saving variables of interest
 cd /home/dmendez/mcode/DATABASE
 % Save multichannel QRS complex detection performance
-save('Performance_PT1_EA_T24_Main','RMSE_opt','ALPHA_optimo','funcion_objetivo', 'poblacion','beta_optimal','RMSE_opt_Temp','average_distance','Mean_fitnnes','Worst_score');
+save('Performance_PT_EA_Main','RMSE_opt','ALPHA_optimo','funcion_objetivo', 'poblacion','beta_optimal','RMSE_opt_Temp','average_distance','Mean_fitnnes','Worst_score');
  
   toc
   
