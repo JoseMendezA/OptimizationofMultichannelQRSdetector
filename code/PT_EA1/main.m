@@ -21,7 +21,7 @@ tic
  mejorRMSE = 1000; %Represents the best detection performance using the
                    %proposed multi-channel detector for PT
       
-% Parameters of Terminate conditions of the algorithm 
+% Setting of algorithm termination conditions
  iter = 0;
  parar = false;
  r = 0;
@@ -57,7 +57,7 @@ addpath(pwd);
       disp('Cross-over Operator: "Simple Arithmetic Cross-over"');
       [Offspring, R1, factor_prob_cross] = CruceR(mating_pool,V,max_iter,iter);
       
-      %Mutation operator
+      %Mutation operator (self-adaptative process)
       disp('Mutation Operator: Uncorrelated Mutation with one Step Size');
       [Offspring,Rmut,Pm] = Mutacion( Offspring,iter,max_iter,I_alpha,I_beta);
       
@@ -98,7 +98,7 @@ addpath(pwd);
     
     iter=iter+1;
 
-    %%Diversity control
+    %%Adapatative process: Diversity control
     HD = pdist([poblacion(best,:); poblacion(worst,:)],'hamming') % Hamming distance
     if HD < 1 && iter < floor(0.7*max_iter) % Depth in finding final iterations to increase exploitation
        %Reinitialise population arrangement with new coding 
