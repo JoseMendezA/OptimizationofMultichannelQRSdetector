@@ -25,7 +25,7 @@ function fusion = performFusionOptTrain(det, detWin, coefficients, beta)
 %     http://creativecommons.org/licenses/by-nc/4.0/
 %
 %     Author: Carlos Ledezma
-%     Last modified: Miguel Altuve, Mar 2018, miguelaltuve@gmail.com
+%     Last modified: Dilio Méndez, Dec 2020, diliomendez@gmail.com
 
 %Variable to count which detection signals are empty
 emp = false(size(det));
