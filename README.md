@@ -12,9 +12,15 @@ Las siguientes funciones de MATLAB corresponden a los detectores complejos QRS d
 1. pan_tompkin.m: método de detección basado en filtros Pan y Tompkins [2]. Codificado por Hooman Sedghamiz (2014), Universidad de Linkoping.
 2. detectHT.m: Benítez et al. Método de detección basado en la transformada de Hilbert [3].
 
-Inicialmente se fijan los hiperparámetros del modelo mediante un diseño experimental multifactorial $3^3$ (sintonización). 
+Inicialmente se fijan los hiperparámetros del modelo mediante un diseño experimental multifactorial ${3}^3$ (sintonización de hiperparámetros). Los niveles se seleccionaron mediante una amplia exploración en un espacio finito con distintos valores por factor, acotando las combinaciones mediante el método Grid Search.
 
-Con el proposito de generalizar el enfoque y optimizar la selección de los coeficientes $\alpha_j$ y $\beta$, se utilizó un algoritmo evolutivo para determinarlos.
+Posteriormente, con el proposito de generalizar el enfoque y optimizar la selección de los coeficientes ${\alpha}_j$ y $\beta$, se utilizó un algoritmo evolutivo para determinarlos. A través del proceso evolutivo se efectúa el entrenamiento de los parámetros del modelo, los cuales se utilizan en la fusión de datos descentralizada de la siguiente manera:
+
+1. Calculamos las detecciones de complejos QRS en cada canal del ECG y el rendimiento de los detectores de complejos QRS. Esto se hace en el archivo singlechannel_detection_performance_main.m.
+
+2. Efectuamos la fusión de datos provenientes de cada canal con los valores para los coeficientes ${\alpha}_j$ y $\beta$ aprendidos en el proceso evolutivo. Cuantificamos la detección global al comparar la función de fusión con el umbral de decisión $\beta$. 
+
+3. Se evalua el desempeño del modelo a partir del error absoluto medio (MAE) entre la detección global registrada por el modelo y las anotaciones de la base de datos. 
 
 ## Instrucciones para ejecutar una simulación simple
 
