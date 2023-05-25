@@ -11,7 +11,7 @@ function [poblacion, funcion_objetivo] = Survivor_selection(mating_pool, Offspri
       % Evaluate new candidates 
       disp('Evaluate new candidates');
       [funcion_objetivo_offspring] = funcionObjetivo (Offspring, tamano_offspring);
-      funcion_objetivo_offspring = funcion_objetivo_offspring.HT; % converting from struct to double
+      funcion_objetivo_offspring = funcion_objetivo_offspring.PT; % converting from struct to double
       
       % SELECT individuals for the next generation
       set_candidates = [mating_pool;Offspring]; % set of offspring and parents

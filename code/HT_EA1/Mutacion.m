@@ -12,7 +12,7 @@ function [ Offspring, Rmut, Pm] = Mutacion( Offspring,iter,max_iter,I_alpha,I_be
 %   SHRINK controls how fast the SCALE is reduced as generations go by. A
 %   SHRINK value of 0 will result in no shrinkage, yielding a constant
 %   search size. A value of 1 will result in SCALE shrinking linearly to 0
-%   as GA progresses to the number of generations specified by the options
+%   as EA progresses to the number of generations specified by the options
 %   structure.
         
     [Ro , Co] = size(Offspring);
@@ -22,7 +22,7 @@ function [ Offspring, Rmut, Pm] = Mutacion( Offspring,iter,max_iter,I_alpha,I_be
     np = Co; % the numbers of parameters
     Pm = (2 +((np-2)/(max_iter-1))*iter)^-1 % Back and Schutz 1996
     Rmut = rand
-    shrink = 0.8; %The value for SHRINK is the default value SHRINK=0.75. 
+    shrink = 0.8; %The value for SHRINK is the default value SHRINK=0.8. 
     
     %  Do the mutation.
     

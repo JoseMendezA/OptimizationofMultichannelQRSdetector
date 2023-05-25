@@ -11,7 +11,7 @@
 % Author: Miguel Altuve, PhD
 % Date: March 2018
 % Email: miguelaltuve@gmail.com
-% Last updated: Oct 2020
+% Last updated: October 2020
 
 database = 'INCART'; % name of the database
 
@@ -23,23 +23,25 @@ detectionsTemp = detections;
 clear detections; % the name detections will be used again
 
 % load('ALPHA_optimo')
-load('Performance_HT_EA1_T27_Main.mat', 'ALPHA_optimo'); % Calculated at Training
+load('Performance_HT_EA_Main.mat', 'ALPHA_optimo'); % Calculated at Training
 
 % load('beta_optimo')
-load('Performance_HT_EA1_T27_Main.mat', 'beta_optimal'); % Calculated at Training 
+load('Performance_HT_EA_Main.mat', 'beta_optimal'); % Calculated at Training 
 
 cd /home/dmendez/mcode/DATABASE
+
+%% Test
 
     beta_opt = beta_optimal;
-    
-%     %%%---------------------------------------------------------------%%
-    disp(['Test GQRS detector in ' database]);
-%     % Test
+
+    disp(['Test HT detector in ' database]);
+
     [performance.Test.HT, detections.HT] = multichannel_detector_test(detectionsTemp{2}.HT, database, beta_opt, ALPHA_optimo);
-    
+
+
 % % Saving variables of interest
 cd /home/dmendez/mcode/DATABASE
-% % Save multichannel QRS complex detections (QRS complex localization)
-save('Detections_HT_EA1_T27_Test','detections');
-% % Save multichannel QRS complex detection performance
-save('Performance_HT_EA1_T27_Test','performance','ALPHA_optimo','beta_optimal');
+%% Save multichannel QRS complex detections (QRS complex localization)
+save('Detections_HT_EA_Test','detections');
+%% Save multichannel QRS complex detection performance
+save('Performance_HT_EA_Test','performance','ALPHA_optimo','beta_optimal');

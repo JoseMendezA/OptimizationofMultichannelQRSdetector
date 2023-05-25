@@ -41,8 +41,7 @@ N = size(detections,1); % Number of ECG channels in the database
 %=======Estimating weighting coefficients Alpha and decision Threshold beta=================
 % Threshold beta, used to decide whether a detection is true or false, was
 % estimated in the learning period. For various threshold values, the
-% threshold that leads to the shortest Euclidean distance to perfect
-% detection was selected
+% threshold that leads to the shortest mean absolute error detection was selected
 
 disp('Estimating weighting coefficients Alpha and decision Threshold beta');
 
@@ -50,7 +49,7 @@ M = length(beta); % number of thresholds
 performance = zeros(M,9); % matrix of performance
 
 
-%  Evaluate detection and RMSE on every individuals
+%  Evaluate detection and MAE on every individuals
 for j1 = 1 : M
     
     disp(['Evaluating multichannel individual in ' database ', Individual weighting coefficients and threshold beta number = ' num2str(j1) ', Remaining ' num2str(tamano_poblacion-j1) ' individuals']);
@@ -129,7 +128,7 @@ for j1 = 1 : M
         % in the ROC curve)
         SDTP = sqrt( (1-Se/100)^2 + (1-PP/100)^2 );
         
-         %%%%%%%%%%% Evaluate RMSE %%%%%%%%
+        % Evaluate MAE
         % RMSE = sqrt((1/n)*sum(abs(x(i)-det(i))))
         % Read annotations 
         
@@ -156,7 +155,7 @@ for j1 = 1 : M
         Sum_Temp(z1) = abs(x(z1)-det_temp(z1));
         Suma = Suma+Sum_Temp(z1);
         end
-        RMSE = sqrt((1/n)*Suma); % RMSE for record i and individual weighting coefficients j1
+        RMSE = sqrt((1/n)*Suma); % MAE for record i and individual weighting coefficients j1
         
         TEMP(i,:) = [tp,fn,fp,Se,PP,DER,SDTP,RMSE];
         
@@ -168,8 +167,8 @@ for j1 = 1 : M
     x=[];
 end
 
-% Get RMSE
-funcion_objetivo = performance(:,9); % RMSE Values for individual weighting coefficients j1
+% Get MAE
+funcion_objetivo = performance(:,9); % MAE  Values for individual weighting coefficients j1
 
 cd ..
 

@@ -18,32 +18,32 @@ database = {'MIT','INCART'}; % name of the databases
 load('PerformanceSinglechannel')
 
 for i = 1 : length(database)
-    
+
     % Mean Singlechannel performance of PT detector
     [SD] = evaluate_performance_singlechannel_detector('PT', database{i}, performance{i}.PT);
     sd{i}.PT= SD; % field PT on struct Main performance detector
-    
+
     % Singlechannel performance of HT detector
     [SD] = evaluate_performance_singlechannel_detector('HT', database{i}, performance{i}.HT);
     sd{i}.HT= SD; % field HT on struct Main performance detector
-    
+
     % Mean Singlechannel performance of PT detector
     [SD] = evaluate_performance_singlechannel_detector('DPI', database{i}, performance{i}.DPI);
     sd{i}.DPI= SD; % field DPI on struct Main performance detector
-    
+
     % Mean Singlechannel performance of PT detector
     %Test single lead GQRS algorithm
     [SD] = evaluate_performance_singlechannel_detector('GQRS', database{i}, performance{i}.GQRS);
     sd{i}.GQRS = SD; % field GQRS on struct Main performance detector
-    
+
     % Mean Singlechannel performance of PT detector
     [SD] = evaluate_performance_singlechannel_detector('WQRS', database{i}, performance{i}.WQRS);
     sd{i}.WQRS= SD; % field WQRS on struct Main performance detector
-    
+
     % Mean Singlechannel performance of PT detector
     [SD] = evaluate_performance_singlechannel_detector('SQRS', database{i}, performance{i}.SQRS);
     sd{i}.SQRS= SD; % field SQRS on struct Main performance detector
-    
+
 end
 
 % Saving variables of interest
@@ -52,14 +52,14 @@ cd /home/dmendez/mcode/DATABASE
 save('mean_Detector_Singlechannel','sd');
 
 
-%============ Function Mean singlechannel_detection_performance================
+%Function Mean singlechannel_detection_performance
 
 function [sd] = evaluate_performance_singlechannel_detector(DetectorName, database, performance)
 
 % from database {i}
  for i = 1 : length(database)
-     
-     switch database    
+
+     switch database
    
     case 'MIT'
         N = 2; % Number of ECG channels in the database
