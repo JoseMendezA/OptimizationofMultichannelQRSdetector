@@ -17,11 +17,12 @@ The following MATLAB functions correspond to the single-channel QRS complex dete
 ## Instructions for running a simple simulation
 
 In the main script according to the selected detector (PT, HT, GQRS):
+
    - We set the hyperparameters through the experiment design: 
       - Population size ($\mu$); chromosome length (L); 
       - the number of independent variables in an optimized task (V) (in this case, each chromosome is represented by 27 independent variables of a gene) 
       - and prespecified params (barrier constraints for ${\alpha}_j$ y $\beta$).
-  - Setting of algorithm termination conditions (maximum number of generations, ${\delta}_(max)$).
+  - Setting of algorithm termination conditions (maximum number of generations, ${\delta}_{max}$).
   
 1. We first computed the detections of QRS complexes on each ECG channel and the performance of the QRS complex detectors using three different QRS complex detectors in the INCART database. The single-channel detectors are: based on Pan and Tompkins filters (PT) [2], Benítez et al. Based on Hilbert transform (HT) [3] and GQRS PhysioNet detector [4,5]. This is done in the singlechannel_detection_performance_main.m file.
 
