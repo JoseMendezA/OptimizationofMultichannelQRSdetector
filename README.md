@@ -14,7 +14,7 @@ The following MATLAB functions correspond to the single-channel QRS complex dete
 1. pan_tompkin.m: Pan and Tompkins filter-based detection method [2]. Coded by Hooman Sedghamiz (2014), Linkoping university.
 2. detectHT.m: Benítez et al. Hilbert transform-based detection method [3].
 
-## Instrucciones para ejecutar una simulación simple
+## Instructions for running a simple simulation
 
 In the main script according to the selected detector (PT, HT, GQRS):
    a. We set the hyperparameters through the experiment design: 
