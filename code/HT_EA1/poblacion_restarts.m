@@ -26,7 +26,7 @@ end
 % Evaluate new candidates by reinitialise population
       disp('Evaluate members by reinitialise population');
       [funcion_objetivo_temp] = funcionObjetivo (poblacion_temp, tamano_poblacion_temp); % evaluate structure
-      funcion_objetivo_temp = funcion_objetivo_temp.HT; % converting from struct to double
+      funcion_objetivo_temp = funcion_objetivo_temp.PT; % converting from struct to double
       % RMSE_opt is fitness of best individual
       % funcion_objetivo_temp is fitness of new individuals with this encoding 
       funcion_objetivo = [RMSE_opt;funcion_objetivo_temp]; 

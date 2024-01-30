@@ -1,17 +1,20 @@
 # OptimizationofMultichannelQRSdetector
-Código del artículo titulado Optimization of Multi-channel Detection of the QRS Complex in ECG Recordings using Evolutionary Algorithms.
+Code of the paper Optimizing Multichannel QRS Complex Detection Using Evolutionary Algorithms.
 
-El método de detección de complejos QRS propuesto está basado en el trabajo de Ledezma y Altuve [1]. En el esquema general de la metodología propuesta se identifican tres etapas principales: Proceso evolutivo, fusión de datos descentralizada y la evaluación y desempeño. 
+The proposed method for QRS complex detection is based on the work of Ledezma and Altuve [1]. In the general scheme of the proposed methodology, three main stages are identified: Evolutionary process, decentralized data fusion and performance evaluation.
 
-![Resumen-visual-EA](https://github.com/JoseMendezA/OptimizationofMultichannelQRSdetector/blob/main/ProjectImages/Esquema%20_Optimizacion%20_Multicanal5.png)
+![Resumen-visual-EA](https://github.com/JoseMendezA/OptimizationofMultichannelQRSdetector/blob/main/ProjectImages/optimizationscheme.png)
 
-En el enfoque se utilizaron 3 detectores de complejos QRS de un solo canal: Pan y Tompkins [2], Benítez et al. [3] y el detector GQRS de PhysioNet [4,5]. La base de datos ECG multicanal utilizada fue la INCART.  
+This approach was validated using three commonly used single-channel detectors in the literature: Pan and Tompkins (PT) [2], GQRS from PhysioNet [4,5], and Benítez (HT, for Hilbert Transform-based detector) [3].
 
-Las siguientes funciones de MATLAB corresponden a los detectores complejos QRS de un solo canal:
+To conduct this study, the St Petersburg INCART 12-lead Arrhythmia database available on Physionet (https://physionet.org/content/incartdb/1.0.0/) was used.  
 
-1. pan_tompkin.m: método de detección basado en filtros Pan y Tompkins [2]. Codificado por Hooman Sedghamiz (2014), Universidad de Linkoping.
-2. detectHT.m: Benítez et al. Método de detección basado en la transformada de Hilbert [3].
+The following MATLAB functions correspond to the single-channel QRS complex detectors:
 
+1. pan_tompkin.m: Pan and Tompkins filter-based detection method [2]. Coded by Hooman Sedghamiz (2014), Linkoping university.
+2. detectHT.m: Benítez et al. Hilbert transform-based detection method [3].
+
+## Instrucciones para ejecutar una simulación simple
 Inicialmente se fijan los hiperparámetros del modelo mediante un diseño experimental multifactorial ${3}^3$ (sintonización de hiperparámetros). Los niveles se seleccionaron mediante una amplia exploración en un espacio finito con distintos valores por factor, acotando las combinaciones mediante el método Grid Search.
 
 Posteriormente, con el proposito de generalizar el enfoque y optimizar la selección de los coeficientes ${\alpha}_j$ y $\beta$, se utilizó un algoritmo evolutivo para determinarlos. A través del proceso evolutivo se efectúa el entrenamiento de los parámetros del modelo, los cuales se utilizan en la fusión de datos descentralizada de la siguiente manera:
@@ -22,11 +25,8 @@ Posteriormente, con el proposito de generalizar el enfoque y optimizar la selecc
 
 3. Se evalua el desempeño del modelo a partir del error absoluto medio (MAE) entre la detección global registrada por el modelo y las anotaciones de la base de datos. 
 
-## Instrucciones para ejecutar una simulación simple
-
-
 ## Abstract
-Detecting the QRS complex is the most fundamental task in automatically processing and analyzing electrocardiogram (ECG) recordings. However, the combination of the redundant information available from different sources has not been fully exploited to improve the detection of this typical ECG waveform. Therefore, in this work, we are interested in improving the detection performance of QRS complexes on multi-channel ECG recordings using evolutionary algorithms (EA). Specifically, we optimally combined single-channel QRS complex detections into a single detection signal by minimizing the detection error rate as a cost function. QRS detection performances of three commonly used detectors on the twelve ECG channel INCART database show increases of up to 0.44\% in sensitivity and up to 0.25\% in positive predictivity and a reduction of up to 0.85% in the detection error rate compared with their single-channel detector counterparts. 
+Accurate QRS complex detection is crucial in electrocardiogram (ECG) analysis for diagnosing cardiovascular diseases. While single-channel QRS detectors have been commonly used, multichannel approaches hold the potential to enhance accuracy. In this study, we present a method to optimize multichannel QRS complex detection using Evolutionary Algorithms (EAs). Building upon a previous multichannel fusion approach, we aimed to improve its performance through EA-based parameter optimization. We assessed three popular QRS detectors-Pan and Tompkins, GQRS, and a Hilbert Transform-based within this multichannel framework using the INCART ECG database. Our findings showed that the PT detector outperformed others when integrated into the multichannel setup. It achieved a remarkable sensitivity of 99.96\%, a positive predictive value of 99.95\%, and a low detection error rate of 0.0976\%. The EA's ability to discover high-quality solutions during each run contributed to a substantial reduction in false negatives and positives. We conducted a sensitivity analysis to explore the influence of various EA parameters. Notably, 20 generations emerged as the optimal choice, striking an effective balance between exploration and exploitation. Our auto-adaptive parameter control strategy successfully managed this balance throughout the evolutionary process. One notable contribution of our approach is its capacity to generalize detector configurations, eliminating the need for extensive training. This significantly reduces computation time, making it suitable for real-time applications in healthcare. Moreover, our approach can be easily adapted to different QRS detectors with minimal adjustments, enhancing its versatility. Comparing our multichannel approach with single-channel counterparts and existing multichannel methods highlighted its superiority. It consistently achieved a remarkable balance between sensitivity and precision. Additionally, our method can serve as a foundation for future work exploring hybrid architectures combining multidetector and multichannel approaches to further advance QRS detection accuracy in various medical applications. 
 
 ## References
 

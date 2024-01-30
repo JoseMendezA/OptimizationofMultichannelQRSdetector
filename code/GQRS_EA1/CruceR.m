@@ -17,7 +17,7 @@ function [Offspring,R1,factor_prob_cross] = CruceR(mating_pool,V,max_iter,iter)
 % In the case when rand(k) < PC for ith individual, this individual is
 % chosen for cross-over operation.
 Offspring = mating_pool;
-factor = rand(); % where factor: 0 <= µ <= 1. Picked at random every time
+factor = rand() % where factor: 0 <= µ <= 1. Picked at random every time
 R1 = rand() % Cross-over operator it depends on the random choice of real number rand(k) from the range [0,1);
   if  iter < ceil(0.8*max_iter) 
       factor_prob_cross = 0.25; 
@@ -40,10 +40,6 @@ R1 = rand() % Cross-over operator it depends on the random choice of real number
                     Offspring(idx+1,i1) = aux2; % Generate λ new individuals using variation operators
                     idx = idx+2;
                     end
-           end
-%     else
-%         [Row_muta,~] = size(mating_pool); 
-%         RRR = ceil(Row_muta*0.4); % RRR highest individuals for mutation operator in case the recombination operator is not used 
-%         Offspring = mating_pool(1:RRR,:); % individuals for mutation operator if R1 > factor_prob_cross
-   end    
+            end        
+    end    
 end

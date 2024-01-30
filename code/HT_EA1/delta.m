@@ -26,5 +26,5 @@ if(r>1)
   % disp(sprintf('max gen %d < current gen %d setting ratio = 1',mt,ct));
 end
 change = y*(1-r^((1-(ct/mt))^b));
-% change = y*(rand*(1-r))^b;
+
 
