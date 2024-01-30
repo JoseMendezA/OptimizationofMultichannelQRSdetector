@@ -7,7 +7,7 @@ The proposed method for QRS complex detection is based on the work of Ledezma an
 
 This approach was validated using three commonly used single-channel detectors in the literature: Pan and Tompkins (PT) [2], GQRS from PhysioNet [4,5], and Benítez (HT, for Hilbert Transform-based detector) [3].
 
-To conduct this study, the St Petersburg INCART 12-lead Arrhythmia database available on Physionet (\url{https://physionet.org/content/incartdb/1.0.0/}) was used.  
+To conduct this study, the St Petersburg INCART 12-lead Arrhythmia database available on Physionet (https://physionet.org/content/incartdb/1.0.0/) was used.  
 
 Las siguientes funciones de MATLAB corresponden a los detectores complejos QRS de un solo canal:
 
