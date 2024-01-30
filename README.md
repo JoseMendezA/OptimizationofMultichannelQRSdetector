@@ -1,5 +1,5 @@
 # OptimizationofMultichannelQRSdetector
-Código del artículo titulado Optimizing Multichannel QRS Complex Detection Using Evolutionary Algorithms.
+Code of the paper Optimizing Multichannel QRS Complex Detection Using Evolutionary Algorithms.
 
 The proposed method for QRS complex detection is based on the work of Ledezma and Altuve [1]. In the general scheme of the proposed methodology, three main stages are identified: Evolutionary process, decentralized data fusion and performance evaluation.
 
@@ -9,10 +9,10 @@ This approach was validated using three commonly used single-channel detectors i
 
 To conduct this study, the St Petersburg INCART 12-lead Arrhythmia database available on Physionet (https://physionet.org/content/incartdb/1.0.0/) was used.  
 
-Las siguientes funciones de MATLAB corresponden a los detectores complejos QRS de un solo canal:
+The following MATLAB functions correspond to the single-channel QRS complex detectors:
 
-1. pan_tompkin.m: método de detección basado en filtros Pan y Tompkins [2]. Codificado por Hooman Sedghamiz (2014), Universidad de Linkoping.
-2. detectHT.m: Benítez et al. Método de detección basado en la transformada de Hilbert [3].
+1. pan_tompkin.m: Pan and Tompkins filter-based detection method [2]. Coded by Hooman Sedghamiz (2014), Linkoping university.
+2. detectHT.m: Benítez et al. Hilbert transform-based detection method [3].
 
 Inicialmente se fijan los hiperparámetros del modelo mediante un diseño experimental multifactorial ${3}^3$ (sintonización de hiperparámetros). Los niveles se seleccionaron mediante una amplia exploración en un espacio finito con distintos valores por factor, acotando las combinaciones mediante el método Grid Search.
 
