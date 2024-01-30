@@ -19,7 +19,7 @@ tic
  I_alpha = [0 3.5];       % Scaled in the search range (view previous line comment).
 
  mejorRMSE = 1000; %Represents the best detection performance using the
-                   %proposed multi-channel detector for PT
+                   %proposed multi-channel detector for GQRS
       
 % Setting of algorithm termination conditions
  iter = 0;
@@ -37,7 +37,7 @@ addpath(pwd);
   
 %Creating the array containing the values of the objective function
   [funcion_objetivo] = funcionObjetivo (poblacion, tamano_poblacion);
-  funcion_objetivo = funcion_objetivo.PT; % converting from struct to double
+  funcion_objetivo = funcion_objetivo.GQRS; % converting from struct to double
 
 % Cycle that will run until condition is met:
 % Condition 1: That max_iter evaluations are reached
