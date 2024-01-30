@@ -3,7 +3,7 @@ Code of the paper Optimizing Multichannel QRS Complex Detection Using Evolutiona
 
 The proposed method for QRS complex detection is based on the work of Ledezma and Altuve [1]. In the general scheme of the proposed methodology, three main stages are identified: Evolutionary process, decentralized data fusion and performance evaluation.
 
-![Resumen-visual-EA](https://github.com/JoseMendezA/OptimizationofMultichannelQRSdetector/blob/main/ProjectImages/optimizationscheme.pdf)
+![Resumen-visual-EA](https://github.com/JoseMendezA/OptimizationofMultichannelQRSdetector/blob/main/ProjectImages/optimizationscheme.png)
 
 This approach was validated using three commonly used single-channel detectors in the literature: Pan and Tompkins (PT) [2], GQRS from PhysioNet [4,5], and Benítez (HT, for Hilbert Transform-based detector) [3].
 
